@@ -43,9 +43,9 @@ and tooling ecosystem on to the users of my element. I also believe that I
 should be able to give my users the smallest possible built file that offer's
 the user a fast by default experience without them having to jump through hoops.
 
-I didn't want any super complex infrastructure that merges seperate CSS and JS
+I didn't want any super complex infrastructure that merges separate CSS and JS
 files into one output, I just wanted to have my development build of the custom
-element to work exactly the same as my deployed build..... just smaller.
+element to work exactly the same as my deployed build... just smaller.
 
 I hope with this article that at least you can see my process and understanding
 into how I minified my custom element.
@@ -123,7 +123,7 @@ me a lot of flexibility.
 ## Compressing inline HTML
 
 I did the exact same thing for the HTML minification. The `html-minifier`
-package is pretty neat and I played around with it to find some sane defaults
+package is pretty neat, and I played around with it to find some sane defaults
 that worked well.
 
 ```
@@ -150,7 +150,7 @@ process.stdin.on('end', () => {
 
 ## Hooking it all together
 
-The share button has a custom `bulid` script that compresses the CSS, then the
+The share button has a custom `build` script that compresses the CSS, then the
 HTML and finally it does the ES6 minification and ensures that the file intended
 for distribution and inclusion is as small as possible.
 
@@ -165,13 +165,13 @@ for distribution and inclusion is as small as possible.
 I had intended to write a rant about deploying web components, but it was pretty
 simple in the end.
 
-1. Install the element in to my project
+1. Install the element from within my project:
 
 ```
 npm install sharebutton --save
 ```
 
-2. Add it into my build deployment.
+2. Add it into my build deployment:
 
 ```
 install:
@@ -181,18 +181,18 @@ install:
 
 ## What next?
 
-I think it was worth it. The element is now 7917 bytes vs 11700 bytes which is
-roughly 33% smaller (gzipped it's 2792 bytes vs 3642), so I am happy for now
+I think it was worth it. The element is now 7917 bytes vs. 11700 bytes, which is
+roughly 33% smaller (gzipped, it's 2792 bytes vs. 3642), so I am happy for now
 (although I think I can do better). I also now have a process that I can use
-across my other elements and everything is encapsulated into this one package.
+across my other elements, and everything is encapsulated into this one package.
 
-I backed myself into a corner with my choice of inlining the CSS and HTML but I
+I backed myself into a corner with my choice of inlining the CSS and HTML, but I
 still think it is the best solution for building custom elements.
 
-The solution presented here will do a good job at minifying the element but it
-will not do a great job, for example because the custom element is opaque from 
-the outside elements I could do a better job at minifying CSS selectors, ID's
-etc but the CSS, HTML and JS are not tightly coupled enough for me to do this
+The solution presented here will do a good job at minifying the element, but it
+will not do a great job, for example, because the custom element is opaque from 
+the outside elements I could do a better job at minifying CSS selectors, IDs,
+etc., but the CSS, HTML and JS are not tightly coupled enough for me to do this
 with any confidence.
 
 I would love to get your thoughts on this process and if you have done anything
